@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -8,8 +8,8 @@
 <body>
 회원가입입니다.
 
-<form action="/signup" method="post">
-   아이디 : <input type="text" name="id"/><br>
+<form action="signup.html" method="post" th:action th:object="${user}">
+   아이디 : <input type="text" name="userId" id="userId"/><br>
     비밀번호: <input type="text" name="password"/><br>
     <input type="submit" value="제출" /> <br>
     <input type="reset" value="clear" /> <br>

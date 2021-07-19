@@ -15,26 +15,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {
-    @Autowired
-    private final UserRepository userRepository;
+
     @Autowired
     private final LoginService loginService;
+
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginId(@ModelAttribute User user){
-
-        log.info("컨트롤러 찾기 시작");
-        loginService.login(user);
-
-        return "redirect:/";
-
-
+    public String loginId(@ModelAttribute User user) {
+        if(loginService.login(user)){
+            return "redirect:/";
+        }
+        return "login";
     }
-
-
 
 };
