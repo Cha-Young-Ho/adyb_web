@@ -20,3 +20,4 @@ public class UserModifyForm {
     @NotBlank
     String password;
 };
+

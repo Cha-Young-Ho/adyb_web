@@ -1,6 +1,9 @@
 server:
   servlet:
     context-path: /
+    session:
+      timeout: 30m
+      tracking-modes: cookie
   encoding:
     charset: UTF-8
     enabled: true
@@ -29,3 +32,6 @@ spring:
       fail-on-empty-beans: false
 logging.level:
   org.hibernate.SQL: debug
+
+
+

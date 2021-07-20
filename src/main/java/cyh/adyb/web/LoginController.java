@@ -1,8 +1,8 @@
 package cyh.adyb.web;
 
 import cyh.adyb.domain.User;
-import cyh.adyb.repository.UserRepository;
 import cyh.adyb.service.LoginService;
+import cyh.adyb.web.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,11 +27,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginId(@ModelAttribute User user) {
-        if(loginService.login(user)){
-            return "redirect:/";
+    public String loginId(@ModelAttribute User user, HttpServletRequest request) {
+        if(!loginService.login(user)){
+            return "login";
         }
-        return "login";
+
+        HttpSession session = request.getSession();
+
+        session.setAttribute(SessionConst.LOGIN_USER, user);
+
+
+        return "redirect:/";
     }
 
 };
