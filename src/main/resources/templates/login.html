@@ -1,17 +1,46 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html th:replace="~{layouts/base :: layout(~{::title},~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-
     <title>로그인</title>
 </head>
 <body>
-로그인입니다.
+<section class="masthead text-center">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Login</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                <form id="loginForm" action="/login" method="post">
 
-<form method="post" action="/login">
-    ID :<input type="text" name="userId"><br>
-    PASSWORD :<input type="text" name="password"><br>
-    <button type="submit">제출</button>
-</form>
+                    <!-- ID address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="userId" id="userId" type="text" placeholder="ID" />
+                        <label for="userId">ID</label>
+                    </div>
+                    <!-- Password number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="password" id="password" type="password" placeholder="****"/>
+                        <label for="password">Password</label>
+
+                    </div>
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
 </body>
 </html>

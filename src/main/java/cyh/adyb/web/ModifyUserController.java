@@ -39,7 +39,11 @@ public class ModifyUserController {
         log.info("user form afterid={}", userModifyForm.getUserId());
         log.info("user form afterpass= {}", userModifyForm.getPassword());
 
-        modifyUserService.modifyUser(userModifyForm);
+        boolean check = modifyUserService.modifyUser(userModifyForm);
+
+        if(check == false){
+            return "/modify";
+        }
 
         return "redirect:/";
 

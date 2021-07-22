@@ -16,11 +16,18 @@ public class HomeController {
                     User user, Model model
     ){
 
-        if(user == null){
-            return "home";
+        addUser(user, model);
+        return "home";
+    }
+
+    public void addUser(User user, Model model){
+        if(user == null) {
+            model.addAttribute("user", null);
+            return;
         }
 
         model.addAttribute("user", user);
-        return "loginhome";
+
+        return;
     }
 };

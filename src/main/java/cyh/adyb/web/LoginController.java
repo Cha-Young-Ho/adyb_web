@@ -28,6 +28,8 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginId(@ModelAttribute User user, HttpServletRequest request) {
+
+        log.info("user id ={}", user.getUserId());
         if(!loginService.login(user)){
             return "login";
         }

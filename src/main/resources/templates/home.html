@@ -1,15 +1,26 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html th:replace="~{layouts/base :: layout(~{::title},~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-
-    <title>홈 화면</title>
+    <title>홈 입니다.</title>
 </head>
 <body>
-<button type="button" onclick="location.href='/' ">홈</button>
-<button type="button" onclick="location.href='/board' ">게시판</button>
-<button type="button" onclick="location.href='/signup' ">회원가입</button>
-<button type="button" onclick="location.href='/login' ">로그인</button>
-<button type="button" onclick="location.href='/modify'">회원수정</button>
+
+<section th:object="${user}">
+    <div th:replace="~{fragment/masthead :: masthead}"></div>
+
+    <div th:replace="~{fragment/portfolio :: portfolio}"></div>
+    <section class="masthead text-center">
+
+    <button type="button" onclick="location.href='/' ">홈</button>
+    <button type="button" onclick="location.href='/board' ">게시판</button>
+    <button type="button" onclick="location.href='/signup' ">회원가입</button>
+    <button type="button" onclick="location.href='/login' ">로그인</button>
+    <button type="button" onclick="location.href='/modify'">회원수정</button>
+
+        <button th:text="${user}"></button>
+
+    </section>
+</section>
 </body>
 </html>

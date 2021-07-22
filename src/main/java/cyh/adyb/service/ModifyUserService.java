@@ -14,13 +14,19 @@ public class ModifyUserService {
 
     private final UserRepository userRepository;
 
-    public void modifyUser(UserModifyForm userModifyForm){
+    public boolean modifyUser(UserModifyForm userModifyForm){
 
        User user = userRepository.findByUserId(userModifyForm.getBeforeId());
+
+       if(user == null){
+           return false;
+       }
        user.setUserId(userModifyForm.getUserId());
        user.setPassword(userModifyForm.getPassword());
 
         userRepository.save(user);
+
+        return true;
 
     }
 };
