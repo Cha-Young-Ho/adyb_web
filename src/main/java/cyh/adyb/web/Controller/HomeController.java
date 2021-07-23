@@ -1,4 +1,4 @@
-package cyh.adyb.web;
+package cyh.adyb.web.Controller;
 
 import cyh.adyb.domain.User;
 import cyh.adyb.web.session.SessionConst;
@@ -20,14 +20,13 @@ public class HomeController {
         return "home";
     }
 
+
     public void addUser(User user, Model model){
         if(user == null) {
-            model.addAttribute("user", null);
+            model.addAttribute("user", new User());
             return;
         }
-
         model.addAttribute("user", user);
-
         return;
     }
 };

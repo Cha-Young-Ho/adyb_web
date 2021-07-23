@@ -21,11 +21,25 @@
             </ul>
         </div>
 
+        <div th:if="${user.userId == null}">
+            <button type="button" class="btn btn-info"  onclick="location.href='/login'">로그인</button>
+            <button type="button" class="btn btn-info" onclick="location.href='/signup'">회원가입</button>
+        </div>
+        <button type="button" class="btn btn-info" onclick="location.href='/logout'" th:unless="${user.userId== null}">로그아웃</button>
 
-        <button type="button" class="btn btn-info" th:if="${user == null}">로그인</button>
-        <button type="button" class="btn btn-info" th:unless="${user== null}">로그아웃</button>
-        <span th:if="${user==null}" th:text="${user}"></span>
-
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger">Action</button>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </div>
 
     </div>
 </nav>

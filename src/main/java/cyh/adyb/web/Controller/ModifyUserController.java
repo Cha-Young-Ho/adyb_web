@@ -1,11 +1,13 @@
-package cyh.adyb.web;
+package cyh.adyb.web.Controller;
 
 
+import cyh.adyb.domain.User;
 import cyh.adyb.service.ModifyUserService;
 import cyh.adyb.web.validator.UserModifyForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +22,9 @@ public class ModifyUserController {
     private final ModifyUserService modifyUserService;
 
     @GetMapping("/modify")
-    public String ModifyUser(){
+    public String ModifyUser(Model model){
 
-
-
-
+        model.addAttribute("user", new User());
         return "/modify";
     }
 

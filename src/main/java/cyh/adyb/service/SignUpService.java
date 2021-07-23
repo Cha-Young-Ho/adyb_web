@@ -14,7 +14,18 @@ public class SignUpService {
     @Autowired
     private final UserRepository userRepository;
 
-    public void signup(User user){
+    /**
+     * 회원가입
+     */
+    public String signup(User user){
+
+        //id 중복 시
+        if(userRepository.findByUserId(user.getUserId()) != null){
+            return "signup";
+        }
+
+        //id 중복이 아닐 시
         userRepository.save(user);
+        return "redirect:/";
     }
 };
