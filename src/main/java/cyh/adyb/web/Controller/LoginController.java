@@ -28,29 +28,28 @@ public class LoginController {
     public String login(
             @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
                                     User user, Model model) {
-
+        model.addAttribute("user", new User());
         if(user != null){
             return "redirect:/";
         }
-        model.addAttribute("user", new User());
+
         return "login";
     }
 
     @PostMapping("/login")
     public String loginId(@ModelAttribute User user, HttpServletRequest request, Model model) {
-
-
+        model.addAttribute("user", new User());
+        
+        //로그인 성공
         if(loginService.login(user)){
-            log.info("세션 발급");
+            // 세션 생성
             HttpSession session = request.getSession();
-
+            // 세션 설정
             session.setAttribute(SessionConst.LOGIN_USER, user);
-
             return "redirect:/";
         }
-
-        model.addAttribute("user", null);
-
+        
+        //로그인 실패
         return "login";
     }
 

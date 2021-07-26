@@ -3,6 +3,7 @@ package cyh.adyb.web.Controller;
 
 import cyh.adyb.domain.User;
 import cyh.adyb.service.ModifyUserService;
+import cyh.adyb.web.session.SessionConst;
 import cyh.adyb.web.validator.UserModifyForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,11 +24,16 @@ public class ModifyUserController {
     private final ModifyUserService modifyUserService;
 
     @GetMapping("/modify")
-    public String ModifyUser(Model model){
+    public String ModifyUser(
+            @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
+                                         User user, Model model){
 
-        model.addAttribute("user", new User());
-        return "/modify";
+
+        addUser(user, model);
+        return "modify";
     }
+
+
 
     @PostMapping("/modify")
     public String ModifyUser(@Validated @ModelAttribute UserModifyForm userModifyForm, BindingResult bindingResult){
@@ -48,6 +55,14 @@ public class ModifyUserController {
         return "redirect:/";
 
 
+    }
+    public void addUser(User user, Model model){
+        if(user == null) {
+            model.addAttribute("user", new User());
+            return;
+        }
+        model.addAttribute("user", user);
+        return;
     }
 
 };

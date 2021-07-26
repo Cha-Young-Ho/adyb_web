@@ -30,8 +30,6 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-logging.level:
-  org.hibernate.SQL: debug
 
 
 

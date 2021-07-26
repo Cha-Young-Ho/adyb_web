@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:replace="~{layouts/base :: layout(~{::title},~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>게시판 쓰기</title>
 </head>
 <body>
+<section class="masthead text-center">
+<div>
+게시판 쓰기 입니다.
 
+</div>
+    id="signUpForm" action="/signup" method="post" th:object="${user}"
+    <form id="board" action="/board_write" method="post" th:object="${board}">
+
+        제목 : <input name="title" id="title" type="text">
+        내용 : <input name="content" id="content" type="text">
+
+
+        <button type="submit">제출</button>
+    </form>
+
+</section>
 </body>
 </html>
