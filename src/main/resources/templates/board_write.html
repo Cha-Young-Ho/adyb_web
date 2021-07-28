@@ -6,19 +6,33 @@
     <title>게시판 쓰기</title>
 </head>
 <body>
-<section class="masthead text-center">
-<div>
-게시판 쓰기 입니다.
+<section class="masthead">
+    <form id="board" action="/board_write" method="post" th:object="${board}" enctype="multipart/form-data">
 
-</div>
-    id="signUpForm" action="/signup" method="post" th:object="${user}"
-    <form id="board" action="/board_write" method="post" th:object="${board}">
+        <div class="form-group">
+            <label for="title" class="h4">제목</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요.">
+        </div>
 
-        제목 : <input name="title" id="title" type="text">
-        내용 : <input name="content" id="content" type="text">
+        <hr width = "100%" color = "blue" size = "3"><br>
 
+        <input type="file" id="imageFiles" name="imageFiles" multiple="multiple" accept="image/*">
 
-        <button type="submit">제출</button>
+        <hr width = "100%" color = "blue" size = "3">
+
+        <div class="form-group">
+            <label for="content" class="h4">내용</label><br>
+            <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+        </div>
+
+        <hr width = "100%" color = "blue" size = "3"> <br>
+
+        <div class="text-center">
+
+            <button type="submit" class="btn btn-success" style="color:white;">등록하기</button>
+
+            <button type="button" class="btn btn-danger" style="color:white;" onclick="location.href='/board'">목록으로</button>
+        </div>
     </form>
 
 </section>

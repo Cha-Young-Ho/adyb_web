@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class BoardWriteService {
+
+    private String filepath = "C:/Users/ckdud/";
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
     public void write(Board board, User user){

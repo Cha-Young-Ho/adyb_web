@@ -3,6 +3,7 @@ package cyh.adyb.domain;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -31,6 +32,7 @@ public class Board {
 
     @ColumnDefault("0")
     private int count;
+
 
     @CreationTimestamp
     private Timestamp createDate;
