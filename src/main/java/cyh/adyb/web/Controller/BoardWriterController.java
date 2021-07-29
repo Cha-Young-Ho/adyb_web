@@ -1,7 +1,9 @@
 package cyh.adyb.web.Controller;
 
+import cyh.adyb.component.FileHandler;
 import cyh.adyb.domain.Board;
 import cyh.adyb.domain.User;
+import cyh.adyb.service.BoardUserFileService;
 import cyh.adyb.service.BoardWriteService;
 import cyh.adyb.web.session.SessionConst;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,6 +22,8 @@ import java.io.IOException;
 public class BoardWriterController {
 
     private final BoardWriteService boardWriteService;
+    private final FileHandler fileHandler;
+    private final BoardUserFileService boardUserFileService;
     @GetMapping("/board_write")
     public String BoardWriter(
             @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
@@ -29,10 +34,12 @@ public class BoardWriterController {
     }
 
     @PostMapping("/board_write")
-    public String BoardWriter(@ModelAttribute Board board, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
+    public String BoardWriter(@ModelAttribute Board board, @RequestParam(value="imageFiles", required=false) List<MultipartFile> files, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
             User user) throws IOException {
 
+
         boardWriteService.write(board, user);
+        boardUserFileService.userFilelRepository(fileHandler.UserFileUpload(files, user.getUserId()), board);
         return "redirect:/board";
 
     }

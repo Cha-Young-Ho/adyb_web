@@ -34,5 +34,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Reply> replyList;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserFile> userFileList;
+
 
 };

@@ -6,13 +6,13 @@
 </head>
 <body>
 <section class="masthead text-center">
-    <button type="button" onclick="location.href='/board_write'">글쓰기</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/board_write'">글쓰기</button>
         <div class="container">
             <div >
          <div class="row">
             <div class="col" th:each="board : ${boards}">
                 <div class="card" style="width: 18rem;">
-                 <img src="..." class="card-img-top" alt="...">
+                 <img th:if="${board.userFileList != null}" th:src="${board.userFileList[0].filePath}" src="..." class="card-img-top" alt="...">
                  <div class="card-body">
                     <h5 class="card-title" th:text="${board.title}">Card title</h5>
                      <p class="card-text" th:text="${board.content}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

@@ -3,7 +3,6 @@ package cyh.adyb.domain;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -36,5 +35,10 @@ public class Board {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    @OneToMany(mappedBy = "board")
+    private List<UserFile> userFileList;
+
+
 
 };
