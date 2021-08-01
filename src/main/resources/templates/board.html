@@ -16,11 +16,15 @@
                  <div class="card-body">
                     <h5 class="card-title" th:text="${board.title}">Card title</h5>
                      <p class="card-text" th:text="${board.content}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                     <a href="/board_info" class="btn btn-primary">Go somewhere</a>
+                     <form action="/board_info" method="post">
+                     <input type="submit" th:name="boardId" th:value="${board.boardId}" class="btn btn-primary">Go somewhere</input>
+                     </form>
                  </div>
                  </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 
