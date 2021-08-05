@@ -27,30 +27,27 @@ public class SignUpContoller {
     private final SignUpService signUpService;
 
     @GetMapping("/signup")
-    public String signup( @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
-                                      User user, Model model){
+    public String signup(
+            @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)User user, Model model){
 
         if(user != null){
-            model.addAttribute("user", new User());
             return "redirect:/";
         }
-        model.addAttribute("user", new User());
         return "/signup";
     }
 
     @PostMapping("/signup")
-    public String signupForm(@Validated @ModelAttribute("user") UserSignUpForm user, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String signupForm(@Validated @ModelAttribute("formUser") UserSignUpForm formUser, BindingResult bindingResult, Model model){
 
-        log.info("userid ={}", user.getUserId());
+        //공백 및 오류형태로 입력시
         if(bindingResult.hasErrors()){
-            log.info("sign up errors ={}", bindingResult);
-
             return "/signup";
         }
 
+        // sign up form 형태로 받은 user정보 파싱
         User user2 = new User();
-        user2.setUserId(user.getUserId());
-        user2.setPassword(user.getPassword());
+        user2.setUserId(formUser.getUserId());
+        user2.setPassword(formUser.getPassword());
 
         return  signUpService.signup(user2);
     }

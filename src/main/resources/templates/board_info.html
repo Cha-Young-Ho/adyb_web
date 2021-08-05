@@ -9,11 +9,49 @@
 
     <div class="jumbotron"  th:object="${board}">
         <h1 class="display-4" th:text="${board.title}">Hello, world!</h1>
+        <br>
+        <hr>
+        <br>
+        <div th:each="path : ${board.userFileList}">
+            <br>
+            <img th:src="${path.filePath}" class="card-img-top" alt="..." style="width: 200px; height 300px;">
+            <br>
+        </div>
+        <br><hr><br>
         <p class="lead" th:text="${board.content}">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
+        <hr><br>
         <p th:text="${board.user.userId}">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+
+        <br><hr><br>
+
+        <!-- Reply Section -->
+
+        <div class="col" th:each="reply : ${board.replyList}">
+            <h3 th:text="${reply.content}"></h3>
+        </div>
+
+
+        <!-- Reply Write Section -->
+        <div class="lead">
+
+            <form id="reply" action="/reply_write" method="post" style="display: inline-block;
+          text-align: center; width: 60%">
+                <input type="text" id="content" name="content" class="form-control" placeholder="댓글을 입력해주세요.." aria-label="댓글을 입력해주세요.." aria-describedby="basic-addon2">
+                <input type="hidden" id="boardId" name="boardId" th:value="${board.boardId}">
+                <br>
+                <button style="width: 20%" class="btn btn-outline-secondary" type="submit">등록</button>
+
+            </form>
+
+            <br><br><hr><br><br>
+        </div>
+        <!-- Reply Write Section End -->
+
+
+
+        <!-- Reply Section End -->
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a class="btn btn-primary btn-lg" href="/board" role="button">목록으로</a>
         </p>
     </div>
 

@@ -38,7 +38,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginId(@ModelAttribute User user, HttpServletRequest request, Model model) {
-        model.addAttribute("user", new User());
+
         
         //로그인 성공
         if(loginService.login(user)){

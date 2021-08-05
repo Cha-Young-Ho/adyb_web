@@ -11,24 +11,27 @@
             <div >
          <div class="row">
             <div class="col" th:each="board : ${boards}">
-                <div class="card" style="width: 18rem;">
-                 <img th:if="${board.userFileList != null}" th:src="${board.userFileList[0].filePath}" src="..." class="card-img-top" alt="...">
+                <div class="card" style="width: 20rem; height: 493px; margin-top: 15px; margin-bottom: 15px;">
+                    <img th:if="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%;" th:src="${board.userFileList[0].filePath}" class="card-img-top" alt="..." >
+                    <img th:unless="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%;" src="assets/img/nophotos.png" class="card-img-top" alt="...">
                  <div class="card-body">
-                    <h5 class="card-title" th:text="${board.title}">Card title</h5>
-                     <p class="card-text" th:text="${board.content}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                     <form action="/board_info" method="post">
-                     <input type="submit" th:name="boardId" th:value="${board.boardId}" class="btn btn-primary">Go somewhere</input>
+                    <h5 class="card-title" th:text="${board.title}" style="height: 12.5%;">Card title</h5>
+                     <hr>
+                     <p class="card-text" th:text="${board.content}" style="height: 12.5%;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <hr>
+                     <!-- get -->
+                     <!--<a class="btn btn-success" th:href="@{/board_info/{boardId}(boardId=${board.boardId})}" th:name="boardId" th:value="${board.boardId}">path variable</a> -->
+
+                     <!-- post -->
+                     <form action="/board_info" method="post" style="height: 12.5%;">
+                         <button type="submit" th:name="boardId" th:value="${board.boardId}"class="btn btn-primary">상세보기</button>
                      </form>
                  </div>
                  </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
 </section>
 </body>
 </html>

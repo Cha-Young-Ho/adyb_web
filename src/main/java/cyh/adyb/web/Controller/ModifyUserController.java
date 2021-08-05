@@ -24,12 +24,7 @@ public class ModifyUserController {
     private final ModifyUserService modifyUserService;
 
     @GetMapping("/modify")
-    public String ModifyUser(
-            @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
-                                         User user, Model model){
-
-
-        addUser(user, model);
+    public String ModifyUser(){
         return "modify";
     }
 
@@ -41,10 +36,7 @@ public class ModifyUserController {
             log.info("errors ={}", bindingResult);
             return "/modify";
         }
-        log.info("user form beforeid ={}", userModifyForm.getBeforeId());
-        log.info("user form beforepass ={}", userModifyForm.getBeforePassword());
-        log.info("user form afterid={}", userModifyForm.getUserId());
-        log.info("user form afterpass= {}", userModifyForm.getPassword());
+
 
         boolean check = modifyUserService.modifyUser(userModifyForm);
 
@@ -56,13 +48,6 @@ public class ModifyUserController {
 
 
     }
-    public void addUser(User user, Model model){
-        if(user == null) {
-            model.addAttribute("user", new User());
-            return;
-        }
-        model.addAttribute("user", user);
-        return;
-    }
+
 
 };

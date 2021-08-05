@@ -19,17 +19,13 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class BoardWriterController {
+public class BoardWriteController {
 
     private final BoardWriteService boardWriteService;
     private final FileHandler fileHandler;
     private final BoardUserFileService boardUserFileService;
     @GetMapping("/board_write")
-    public String BoardWriter(
-            @SessionAttribute(name = SessionConst.LOGIN_USER, required = false)
-                    User user, Model model
-    ){
-        addUser(user, model);
+    public String BoardWriter(){
         return "board_write";
     }
 
@@ -39,18 +35,15 @@ public class BoardWriterController {
 
 
         boardWriteService.write(board, user);
-        boardUserFileService.userFilelRepository(fileHandler.UserFileUpload(files, user.getUserId()), board);
+
+        log.info("files empty = {}", files.isEmpty());
+
+        if(!(files.isEmpty())) {
+            boardUserFileService.userFilelRepository(fileHandler.UserFileUpload(files, user.getUserId()), board);
+        }
         return "redirect:/board";
 
     }
 
 
-    public void addUser(User user, Model model){
-        if(user == null) {
-            model.addAttribute("user", new User());
-            return;
-        }
-        model.addAttribute("user", user);
-        return;
-    }
 };

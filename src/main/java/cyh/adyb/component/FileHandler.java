@@ -48,7 +48,9 @@ public class FileHandler {
 
 
         for(MultipartFile multipartFile : files) {
-            String path = "C:/test"+"/"+userId+"/"; //파일 저장 경로, 설정파일로 따로 관리한다.
+            //String path = "C:/test"+"/"+userId+"/"; //파일 저장 경로, 설정파일로 따로 관리한다.
+
+            String path = "C:/Users/ckdud/Portfolio/adyb/adyb/src/main/resources/static/assets/img/userimg/" + userId + "/";
 
             // 파일의 확장자 추출
             String extension;
@@ -73,7 +75,7 @@ public class FileHandler {
 
 
             userFile.setUser(user);
-            userFile.setFilePath(path + new_file_name);
+            userFile.setFilePath("assets/img/userimg/"+userId+ "/" + new_file_name);
             userFile.setFileSize(multipartFile.getSize());
             userFile.setOrigFileName(multipartFile.getOriginalFilename());
             userFile.setSavedName(new_file_name);

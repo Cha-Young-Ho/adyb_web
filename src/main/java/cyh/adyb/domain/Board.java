@@ -27,7 +27,7 @@ public class Board {
     private User user;
 
     @OneToMany(mappedBy = "board")
-    private List<Reply> reply;
+    private List<Reply> replyList;
 
     @ColumnDefault("0")
     private int count;

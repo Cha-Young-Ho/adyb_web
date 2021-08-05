@@ -38,7 +38,7 @@
         </div>
 
         <div class="btn-group" th:unless="${user.userId == null}">
-            <button type="button" class="btn btn-danger" th:text="${user.userId}">logout</button>
+            <button type="button" class="btn btn-danger" th:text="${user.userId}" onclick="location.href='/mypage'">logout</button>
             <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
