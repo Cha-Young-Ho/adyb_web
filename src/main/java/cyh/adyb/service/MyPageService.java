@@ -1,35 +1,27 @@
 package cyh.adyb.service;
 
+import cyh.adyb.domain.Board;
 import cyh.adyb.domain.User;
 import cyh.adyb.repository.UserRepository;
-import cyh.adyb.web.validator.UserSignUpLoginForm;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class LoginService {
+public class MyPageService {
+
     @Autowired
     private final UserRepository userRepository;
 
-    public boolean login(User user) {
+    public List<Board> myPageBoard(User user){
 
         User findUser = userRepository.findByUserId(user.getUserId());
+        List<Board> myBoardList = findUser.getBoardList();
 
-        if(findUser == null){
-            return false;
-
-        }
-
-        if(!findUser.getPassword().equals(user.getPassword())){
-            return false;
-        }
-        return true;
-
+        return myBoardList;
     }
 
 };
-////////////필터에서 세션 넣어라!!!!!!!!!!!!!

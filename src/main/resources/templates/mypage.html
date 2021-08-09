@@ -3,12 +3,53 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>마이페이지 입니다.</title>
+
 </head>
 <body>
-<section class="masthead text-center">
+
+<section>
 
 
+    <div class="container" style="margin: 10px 5px !important; padding-top : Calc(6rem + 45px); padding-bottom : 6rem;" th:object="${boardList}">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        내가 쓴 글
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">내 정보</a>
+                    <a href="#" class="list-group-item list-group-item-action">내 상품</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
 
+                <div class="row">
+                    <div class="col" th:each="board : ${boardList}">
+                        <div class="card" style="width: 20rem; height: 520px; margin-top: 15px; margin-bottom: 15px;">
+                            <img th:if="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%; " th:src="${board.userFileList[0].filePath}" class="card-img-top" alt="..." >
+                            <img th:unless="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%;" src="assets/img/nophotos.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${board.title}" style="height: 12.5%; text-overflow: ellipsis;">Card title</h5>
+                                <hr>
+                                <p class="card-text" th:text="${board.content}" style="height: 12.5%; text-overflow: ellipsis;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <hr>
+
+                                <span th:text="${#dates.format(board.createDate, 'yyyy일 MM월 dd일 ')}"></span> <span> 조회수 : </span><span th:text="${board.count}"></span>
+                                <!-- post -->
+                                <form action="/board_info" method="post" style="height: 12.5%;">
+                                    <button type="submit" th:name="boardId" th:value="${board.boardId}"class="btn btn-primary">상세보기</button>
+                                </form>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>

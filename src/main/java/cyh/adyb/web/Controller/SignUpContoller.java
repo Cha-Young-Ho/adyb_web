@@ -3,7 +3,7 @@ package cyh.adyb.web.Controller;
 import cyh.adyb.domain.User;
 import cyh.adyb.service.SignUpService;
 import cyh.adyb.web.session.SessionConst;
-import cyh.adyb.web.validator.UserSignUpForm;
+import cyh.adyb.web.validator.UserSignUpLoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class SignUpContoller {
     }
 
     @PostMapping("/signup")
-    public String signupForm(@Validated @ModelAttribute("formUser") UserSignUpForm formUser, BindingResult bindingResult, Model model){
+    public String signupForm(@Validated @ModelAttribute("formUser") UserSignUpLoginForm formUser, BindingResult bindingResult, Model model){
 
         //공백 및 오류형태로 입력시
         if(bindingResult.hasErrors()){

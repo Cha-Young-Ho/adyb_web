@@ -38,7 +38,7 @@ public class BoardWriteController {
 
         log.info("files empty = {}", files.isEmpty());
 
-        if(!(files.isEmpty())) {
+        if(files.isEmpty()) {
             boardUserFileService.userFilelRepository(fileHandler.UserFileUpload(files, user.getUserId()), board);
         }
         return "redirect:/board";

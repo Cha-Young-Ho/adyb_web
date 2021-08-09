@@ -6,15 +6,11 @@
 </head>
 <body>
 
-<section th:object="${user}">
-    <div th:replace="~{fragment/masthead :: masthead}"></div>
+    <section th:object="${user}">
 
+    <div th:replace="~{fragment/masthead :: masthead}"></div>
     <div th:replace="~{fragment/portfolio :: portfolio}"></div>
     <section class="masthead text-center">
-
-    <button type="button" onclick="location.href='/modify'" th:if="${user.userId != null}">회원수정</button>
-        <button type="button" onclick="location.href='/modify'" th:if="${user.userId != null}">회원수정</button>
-        <button type="button" onclick="location.href='/modify'" th:if="${user.userId != null}">회원수정</button>
 
     </section>
 </section>

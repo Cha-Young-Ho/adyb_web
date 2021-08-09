@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>게시판 입니다.</title>
+
 </head>
 <body>
 <section class="masthead text-center">
@@ -11,21 +12,22 @@
             <div >
          <div class="row">
             <div class="col" th:each="board : ${boards}">
-                <div class="card" style="width: 20rem; height: 493px; margin-top: 15px; margin-bottom: 15px;">
-                    <img th:if="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%;" th:src="${board.userFileList[0].filePath}" class="card-img-top" alt="..." >
-                    <img th:unless="${board.userFileList.size() != 0}" style="height: 62.5%; border-radius: 50%;" src="assets/img/nophotos.png" class="card-img-top" alt="...">
+                <div class="card" style="width: 20rem; height: 520px; margin-top: 15px; margin-bottom: 15px;">
+                    <img th:if="${board.userFileList.size() != 0}" style="width: 316px !important; height: 301.16px !important; border-radius: 50%;" th:src="${board.userFileList[0].filePath}" class="card-img-top" alt="..." >
+                    <img th:unless="${board.userFileList.size() != 0}" style="width: 316px !important; height: 301.16px !important; border-radius: 50%;" src="assets/img/nophotos.png" class="card-img-top" alt="...">
                  <div class="card-body">
-                    <h5 class="card-title" th:text="${board.title}" style="height: 12.5%;">Card title</h5>
+                    <h5 class="card-title" id="word" th:text="${board.title}" style="height: 12.5%; text-overflow: ellipsis;">Card title</h5>
                      <hr>
                      <p class="card-text" th:text="${board.content}" style="height: 12.5%;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <hr>
-                     <!-- get -->
-                     <!--<a class="btn btn-success" th:href="@{/board_info/{boardId}(boardId=${board.boardId})}" th:name="boardId" th:value="${board.boardId}">path variable</a> -->
 
+                     <span th:text="${#dates.format(board.createDate, 'yyyy일 MM월 dd일 ')}"></span> <span> 조회수 : </span><span th:text="${board.count}"></span>
                      <!-- post -->
                      <form action="/board_info" method="post" style="height: 12.5%;">
                          <button type="submit" th:name="boardId" th:value="${board.boardId}"class="btn btn-primary">상세보기</button>
                      </form>
+                     <br>
+
                  </div>
                  </div>
                 </div>

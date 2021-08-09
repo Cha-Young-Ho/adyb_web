@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class UserSignUpForm {
+public class UserSignUpLoginForm {
 
     @NotNull
     @NotBlank

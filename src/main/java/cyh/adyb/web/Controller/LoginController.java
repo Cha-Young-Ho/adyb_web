@@ -3,6 +3,7 @@ package cyh.adyb.web.Controller;
 import cyh.adyb.domain.User;
 import cyh.adyb.service.LoginService;
 import cyh.adyb.web.session.SessionConst;
+import cyh.adyb.web.validator.UserSignUpLoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

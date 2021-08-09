@@ -22,7 +22,7 @@ public class BoardInfoController {
 
 
     @PostMapping("/board_info")
-    public String BoardInfoPost(Model model,Long boardId){
+    public String BoardInfoPost(Model model, Long boardId){
         log.info("board id == {}", boardId);
         model.addAttribute("board", boardInfoService.findBoard(boardId));
         return "board_info";
