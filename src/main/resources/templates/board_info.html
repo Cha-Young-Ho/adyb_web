@@ -28,14 +28,22 @@
 
     </div>
     <!-- Reply Section -->
+    <h2 style="margin: 10px 10px 0 20px;">댓글</h2><hr>
+    <div class="col" name="reply" th:each="reply : ${board.replyList}">
 
-    <div class="col" name="reply" th:each="reply : ${board.replyList}" style="background-color: Cyan;">
-        <div>
-            <b><a th:text="${reply.user.getUserId}"></a></b> <small class="text-muted">3 days ago</small>
-        </div>
+        <div style="margin: 10px 10px 0 10px;">
+            <b><a th:href="@{/userpage(id=${reply.user.userId})}" th:text="${reply.user.getUserId}" ></a></b> <small class="text-muted">3 days ago</small>
+
+            <br>
         <span th:text="${reply.content}"></span>
+        </div>
+        <hr>
+
+
 
     </div>
+
+    <br>
 
 
     <!-- Reply Write Section -->

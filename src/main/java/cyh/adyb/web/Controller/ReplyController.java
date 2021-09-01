@@ -2,7 +2,6 @@ package cyh.adyb.web.Controller;
 
 import cyh.adyb.domain.Reply;
 import cyh.adyb.domain.User;
-import cyh.adyb.repository.ReplyRepository;
 import cyh.adyb.service.ReplyService;
 import cyh.adyb.web.session.SessionConst;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor

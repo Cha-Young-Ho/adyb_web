@@ -2,7 +2,7 @@ package cyh.adyb.web.Controller;
 
 
 import cyh.adyb.domain.User;
-import cyh.adyb.service.MyPageService;
+import cyh.adyb.service.UserPageService;
 import cyh.adyb.web.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class MyPageController {
 
     @Autowired
-    private final MyPageService myPageService;
+    private final UserPageService myPageService;
 
 
     @GetMapping("/mypage")
@@ -25,7 +25,7 @@ public class MyPageController {
                     User user, Model model
     ){
 
-        model.addAttribute("boardList", myPageService.myPageBoard(user));
+        model.addAttribute("boardList", myPageService.userPageBoard(user.getUserId()));
         return "/mypage";
     }
 };

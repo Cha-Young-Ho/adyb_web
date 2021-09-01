@@ -11,14 +11,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MyPageService {
+public class UserPageService {
 
     @Autowired
     private final UserRepository userRepository;
 
-    public List<Board> myPageBoard(User user){
+    public List<Board> userPageBoard(String userId){
 
-        User findUser = userRepository.findByUserId(user.getUserId());
+        User findUser = userRepository.findByUserId(userId);
         List<Board> myBoardList = findUser.getBoardList();
 
         return myBoardList;
