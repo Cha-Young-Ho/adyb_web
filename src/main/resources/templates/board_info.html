@@ -10,8 +10,8 @@
     <div class="jumbotron text-center" >
 
         <h1 class="display-4" style="display: inline;" th:text="${board.title}">Hello, world!</h1>
-        <p style="text-align: right; margin-right: 30px;" class="text-muted">3 days ago</p>
-        <p style="text-align: right; margin-right: 30px;" th:text="'작성자 : ' + ${board.user.userId}"></p>
+        <p th:text="${#dates.format(board.createDate, 'yyyy일 MM월 dd일 ')}" style="margin-right: 30px;" class="text-muted">3 days ago</p>
+        <a style="margin-right: 30px;" th:href="@{/userpage(id=${board.user.userId})}" th:text="'작성자 : ' + ${board.user.userId}"></a>
         <hr>
         <br>
         <div th:each="path : ${board.userFileList}">
@@ -20,7 +20,7 @@
             <br>
         </div>
         <br><hr><br>
-        <p class="lead" th:text="${board.content}">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p class="lead" th:text="${board.content}">데이터 오류!</p>
 
 
         <br><hr><br>
