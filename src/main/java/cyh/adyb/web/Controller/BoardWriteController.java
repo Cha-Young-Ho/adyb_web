@@ -36,8 +36,6 @@ public class BoardWriteController {
 
         boardWriteService.write(board, user);
 
-        log.info("files empty = {}", files.isEmpty());
-
         if(files.isEmpty()) {
             boardUserFileService.userFilelRepository(fileHandler.UserFileUpload(files, user.getUserId()), board);
         }
